@@ -1,4 +1,5 @@
 require 'puppet'
+require 'yaml'
 
 begin
   require 'tinder'
@@ -8,8 +9,11 @@ end
 
 Puppet::Reports.register_report(:campfire) do
 
-CAMPFIRE = "your-campfire-subdomain"
-CAMPFIRE_TOKEN = "your-campfire-token"
+  configfile = File.join([File.dirname(Puppet.settings[:config]), "campfire.yaml"])
+  raise(Puppet::ParseError, "Campfire report config file #{configfile} not readable") unless File.exist?(configfile)
+  config = YAML.load_file(configfile)
+  CAMPFIRE = config[:domain]
+  CAMPFIRE_TOKEN = config[:token]
 
   desc <<-DESC
   Send report information to Campfire.

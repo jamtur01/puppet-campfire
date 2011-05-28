@@ -22,9 +22,9 @@ Installation & Usage
 2.  Install puppet-campfire as a module in your Puppet master's module
 path.
 
-3.  Update the `CAMPFIRE` and `CAMPFIRE_TOKEN` variables in the
-    `campfire.rb` file with your Campfire subdomain, for example
-    `puppetlabs`, and your Campfire token.
+3.  Update the `domain` and `token` variables in the
+    `/etc/puppet/campfire.yaml` with your Campfire subdomain, for example
+    `puppetlabs`, and your Campfire token. An example file is included.
 
 4.  Enable pluginsync and reports on your master and clients in `puppet.conf`
 
