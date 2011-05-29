@@ -17,7 +17,7 @@ Installation & Usage
 
 1.  Install the `tinder` gem on your Puppet master
 
-    $ sudo gem install tinder
+        $ sudo gem install tinder
 
 2.  Install puppet-campfire as a module in your Puppet master's module
 path.
@@ -28,13 +28,13 @@ path.
 
 4.  Enable pluginsync and reports on your master and clients in `puppet.conf`
 
-    [master]
-    report = true
-    reports = campfire
-    pluginsync = true
-    [agent]
-    report = true
-    pluginsync = true
+        [master]
+        report = true
+        reports = campfire
+        pluginsync = true
+        [agent]
+        report = true
+        pluginsync = true
 
 5.  Run the Puppet client and sync the report as a plugin
 
