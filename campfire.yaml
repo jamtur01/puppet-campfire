@@ -1,3 +1,4 @@
 ---
 :domain: puppetlabs
 :token: token
+:roomid: roomid (optional!)
