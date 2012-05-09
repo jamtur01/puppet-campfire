@@ -25,6 +25,8 @@ path.
 3.  Update the `domain` and `token` variables in the
     `/etc/puppet/campfire.yaml` with your Campfire subdomain, for example
     `puppetlabs`, and your Campfire token. An example file is included.
+    If you have a specific room to post to, fill in the ID of the room as
+    `roomid`.
 
 4.  Enable pluginsync and reports on your master and clients in `puppet.conf`
 
