@@ -14,6 +14,7 @@ Puppet::Reports.register_report(:campfire) do
   config = YAML.load_file(configfile)
   CAMPFIRE = config[:domain]
   CAMPFIRE_TOKEN = config[:token]
+  ROOMID = config[:roomid] || nil
 
   desc <<-DESC
   Send report information to Campfire.
@@ -23,12 +24,17 @@ Puppet::Reports.register_report(:campfire) do
     if self.status == 'failed'
       Puppet.debug "Sending status for #{self.host} to Campfire #{CAMPFIRE}"
       campfire = Tinder::Campfire.new(CAMPFIRE, :token => CAMPFIRE_TOKEN)
-      campfire.rooms.first.speak("Puppet run for #{self.host} #{self.status}")
+      if ROOMID
+          automationRoom = campfire.find_room_by_id(ROOMID)
+      else
+          automationRoom = campfire.rooms.first
+      end
+      automationRoom.speak("Puppet run for #{self.host} #{self.status}")
       output = []
       self.logs.each do |log|
         output << log
       end
-      campfire.rooms.first.paste(output.join("\n"))
+      automationRoom.paste(output.join("\n"))
     end
   end
 end
